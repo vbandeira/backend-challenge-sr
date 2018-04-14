@@ -10,5 +10,6 @@ namespace BTech.DataAccess.Entities
 		public string NomeExercicio { get; set; }
 		public string Repeticoes { get; set; }
 		public string Carga { get;  set; }
+		public int Ordem { get; set; }
     }
 }

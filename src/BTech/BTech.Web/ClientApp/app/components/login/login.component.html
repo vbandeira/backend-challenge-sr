@@ -1,0 +1,8 @@
+﻿<h1>Desafio BodyTech</h1>
+
+<h2>Selecione um usuário para prosseguir:</h2>
+<div id="divUsuarios">
+	<div *ngFor="let p of pessoas">
+		<a [routerLink]="" (click)="LoginUser(p)"> {{p.nome}} </a>
+	</div>
+</div>

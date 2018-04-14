@@ -25,7 +25,10 @@ namespace BTech.Web.Controllers
         [HttpGet]
         public IEnumerable<Ficha> GetFichas()
         {
-            return _context.Fichas;
+			return _context.Fichas
+				.Include(f => f.Professor)
+				.Include(f => f.Cliente)
+				.Include(f => f.Series);
         }
 
         // GET: api/Ficha/5
@@ -37,7 +40,7 @@ namespace BTech.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ficha = await _context.Fichas.SingleOrDefaultAsync(m => m.Id == id);
+            var ficha = await _context.Fichas.Include(f => f.Professor).Include(f => f.Cliente).Include(f => f.Series).SingleOrDefaultAsync(m => m.Id == id);
 
             if (ficha == null)
             {

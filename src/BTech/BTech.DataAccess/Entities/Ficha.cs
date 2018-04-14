@@ -8,5 +8,10 @@ namespace BTech.DataAccess.Entities
     {
 		public int Id { get; set; }
 		public List<Serie> Series { get; set; }
+		public DateTime InicioPeriodo { get; set; }
+		public DateTime TerminoPeriodo { get; set; }
+		public Pessoa Professor { get; set; }
+
+		public Cliente Cliente { get; set; }
     }
 }

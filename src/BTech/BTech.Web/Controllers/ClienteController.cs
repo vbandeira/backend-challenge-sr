@@ -11,57 +11,57 @@ using BTech.DataAccess.Entities;
 namespace BTech.Web.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Serie")]
-    public class SerieController : Controller
+    [Route("api/Cliente")]
+    public class ClienteController : Controller
     {
         private readonly BTContext _context;
 
-        public SerieController(BTContext context)
+        public ClienteController(BTContext context)
         {
             _context = context;
         }
 
-        // GET: api/Serie
+        // GET: api/Cliente
         [HttpGet]
-        public IEnumerable<Serie> GetSeries()
+        public IEnumerable<Cliente> GetClientes()
         {
-            return _context.Series;
+            return _context.Clientes;
         }
 
-        // GET: api/Serie/5
+        // GET: api/Cliente/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSerie([FromRoute] int id)
+        public async Task<IActionResult> GetCliente([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var serie = await _context.Series.Include(s => s.Conclusoes).Include(s => s.Exercicios).SingleOrDefaultAsync(m => m.Id == id);
+            var cliente = await _context.Clientes.SingleOrDefaultAsync(m => m.Id == id);
 
-            if (serie == null)
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            return Ok(serie);
+            return Ok(cliente);
         }
 
-        // PUT: api/Serie/5
+        // PUT: api/Cliente/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSerie([FromRoute] int id, [FromBody] Serie serie)
+        public async Task<IActionResult> PutCliente([FromRoute] int id, [FromBody] Cliente cliente)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != serie.Id)
+            if (id != cliente.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(serie).State = EntityState.Modified;
+            _context.Entry(cliente).State = EntityState.Modified;
 
             try
             {
@@ -69,7 +69,7 @@ namespace BTech.Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SerieExists(id))
+                if (!ClienteExists(id))
                 {
                     return NotFound();
                 }
@@ -82,45 +82,45 @@ namespace BTech.Web.Controllers
             return NoContent();
         }
 
-        // POST: api/Serie
+        // POST: api/Cliente
         [HttpPost]
-        public async Task<IActionResult> PostSerie([FromBody] Serie serie)
+        public async Task<IActionResult> PostCliente([FromBody] Cliente cliente)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Series.Add(serie);
+            _context.Clientes.Add(cliente);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSerie", new { id = serie.Id }, serie);
+            return CreatedAtAction("GetCliente", new { id = cliente.Id }, cliente);
         }
 
-        // DELETE: api/Serie/5
+        // DELETE: api/Cliente/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSerie([FromRoute] int id)
+        public async Task<IActionResult> DeleteCliente([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var serie = await _context.Series.SingleOrDefaultAsync(m => m.Id == id);
-            if (serie == null)
+            var cliente = await _context.Clientes.SingleOrDefaultAsync(m => m.Id == id);
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            _context.Series.Remove(serie);
+            _context.Clientes.Remove(cliente);
             await _context.SaveChangesAsync();
 
-            return Ok(serie);
+            return Ok(cliente);
         }
 
-        private bool SerieExists(int id)
+        private bool ClienteExists(int id)
         {
-            return _context.Series.Any(e => e.Id == id);
+            return _context.Clientes.Any(e => e.Id == id);
         }
     }
 }

@@ -13,4 +13,9 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BTech.DataAccess\BTech.DataAccess.csproj" />
+    <ProjectReference Include="..\BTech.Web\BTech.Web.csproj" />
+  </ItemGroup>
+
 </Project>

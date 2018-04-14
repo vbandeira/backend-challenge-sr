@@ -7,29 +7,47 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
-import { CounterComponent } from './components/counter/counter.component';
+import { LoginComponent } from './components/login/login.component';
+import { FichaListaComponent } from './components/fichaList/fichaList.component';
+import { FichaComponent } from './components/ficha/ficha.component';
+import { PessoaComponent } from './components/pessoas/pessoa.component';
+import { PessoaListComponent } from './components/pessoaList/pessoaList.component';
+import { ExercicioComponent } from './components/exercicio/exercicio.component';
+import { SerieComponent } from './components/serie/serie.component';
+
+import { BTechServices } from './services/BTechServices';
+import { AppService } from './services/AppService';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
-        CounterComponent,
-        FetchDataComponent,
-        HomeComponent
+		HomeComponent,
+        LoginComponent,
+        FichaComponent,
+		PessoaComponent,
+		PessoaListComponent,
+		FichaListaComponent,
+		ExercicioComponent,
+		SerieComponent
     ],
     imports: [
         CommonModule,
         HttpModule,
         FormsModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
+			{ path: '', redirectTo: 'login', pathMatch: 'full' },
+			{ path: 'login', component: LoginComponent },
             { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'ficha', component: FichaListaComponent },
+            { path: 'pessoas', component: PessoaListComponent },
             { path: '**', redirectTo: 'home' }
         ])
-    ]
+	],
+	providers: [
+		BTechServices,
+		AppService
+	]
 })
 export class AppModuleShared {
 }

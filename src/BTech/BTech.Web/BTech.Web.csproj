@@ -22,7 +22,39 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\ficha\ficha.component.html" />
+    <None Remove="ClientApp\app\components\ficha\ficha.component.ts" />
+    <None Remove="ClientApp\app\components\login\login.component.ts" />
+    <None Remove="ClientApp\app\models\Cliente.ts" />
+    <None Remove="ClientApp\app\models\Conclusao.ts" />
+    <None Remove="ClientApp\app\models\Exercicio.ts" />
+    <None Remove="ClientApp\app\models\Ficha.ts" />
+    <None Remove="ClientApp\app\models\Pessoa.ts" />
+    <None Remove="ClientApp\app\models\Serie.ts" />
+    <None Remove="ClientApp\app\services\AppService.ts" />
+    <None Remove="ClientApp\app\services\BTechServices.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BTech.DataAccess\BTech.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\ficha\ficha.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\ficha\ficha.component.html" />
+    <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\Cliente.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\Conclusao.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\Exercicio.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\Ficha.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\Pessoa.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\Serie.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\AppService.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\BTechServices.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\app\components\pessoas\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

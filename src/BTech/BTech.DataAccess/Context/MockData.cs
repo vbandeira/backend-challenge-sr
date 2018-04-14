@@ -18,27 +18,12 @@ namespace BTech.DataAccess.Context
 		{
 			Ficha ficha = context.Fichas.First();
 
-			context.Pessoas.Add(new Entities.Pessoa
+			context.Clientes.Add(new Entities.Cliente
 			{
 				Login = "cliente1",
 				Nome = "Cliente 1",
 				ContratoAtivo = true,
-				TipoPessoa = Entities.TipoPessoa.Cliente,
 				Ficha = ficha
-			});
-
-			context.Pessoas.Add(new Entities.Pessoa
-			{
-				Login = "professor1",
-				Nome = "Professor 1",
-				TipoPessoa = Entities.TipoPessoa.Professor
-			});
-
-			context.Pessoas.Add(new Entities.Pessoa
-			{
-				Login = "admin",
-				Nome = "Administrador",
-				TipoPessoa = Entities.TipoPessoa.Administrador
 			});
 
 			context.SaveChanges();
@@ -46,8 +31,20 @@ namespace BTech.DataAccess.Context
 
 		private static void AddFicha(BTContext context)
 		{
+			Pessoa professor = new Entities.Pessoa
+			{
+				Login = "professor1",
+				Nome = "Professor 1",
+			};
+
+			context.Pessoas.Add(professor);
+			context.SaveChanges();
+
 			context.Fichas.Add(new Entities.Ficha
 			{
+				InicioPeriodo = DateTime.Now,
+				TerminoPeriodo = DateTime.Now.AddDays(7),
+				Professor = context.Pessoas.First(p => p == professor),
 				Series = new List<Entities.Serie>
 				{
 					new Entities.Serie
@@ -61,35 +58,43 @@ namespace BTech.DataAccess.Context
 							{
 								NomeExercicio = "Rosca scott com barra",
 								Repeticoes = "3 x 8 ~ 10",
-								Carga = "∞"
+								Carga = "∞",
+								Ordem = 1
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Rosca alternada inclinado"
+								NomeExercicio = "Rosca alternada inclinado",
+								Ordem = 2
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Rosca direta (pegada fechada)"
+								NomeExercicio = "Rosca direta (pegada fechada)",
+								Ordem = 3
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Rosca hammer"
+								NomeExercicio = "Rosca hammer",
+								Ordem = 4
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Supino com pegada invertida"
+								NomeExercicio = "Supino com pegada invertida",
+								Ordem = 5
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Tríceps francês"
+								NomeExercicio = "Tríceps francês",
+								Ordem = 6
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Tríceps patada"
+								NomeExercicio = "Tríceps patada",
+								Ordem = 7
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Tríceps no pulley"
+								NomeExercicio = "Tríceps no pulley",
+								Ordem = 8
 							}
 						}
 					},
@@ -102,31 +107,38 @@ namespace BTech.DataAccess.Context
 						{
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Adutor/Abdutor"
+								NomeExercicio = "Adutor/Abdutor",
+								Ordem = 1
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Leg Press"
+								NomeExercicio = "Leg Press",
+								Ordem = 2
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Cadeira extensora/flexora"
+								NomeExercicio = "Cadeira extensora/flexora",
+								Ordem = 3
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Panturrilha"
+								NomeExercicio = "Panturrilha",
+								Ordem = 4
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Elevação lateral"
+								NomeExercicio = "Elevação lateral",
+								Ordem = 5
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Desenvolvimento ombro"
+								NomeExercicio = "Desenvolvimento ombro",
+								Ordem = 6
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Encolhimento de ombros com Halteres"
+								NomeExercicio = "Encolhimento de ombros com Halteres",
+								Ordem = 7
 							}
 						}
 					},
@@ -139,15 +151,18 @@ namespace BTech.DataAccess.Context
 						{
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Supino reto"
+								NomeExercicio = "Supino reto",
+								Ordem = 1
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Supino inclinado"
+								NomeExercicio = "Supino inclinado",
+								Ordem = 2
 							},
 							new Entities.Exercicio
 							{
-								NomeExercicio = "Supino declinado"
+								NomeExercicio = "Supino declinado",
+								Ordem = 3
 							}
 						}
 					}
