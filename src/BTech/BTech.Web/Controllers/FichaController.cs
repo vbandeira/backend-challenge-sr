@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BTech.DataAccess.Context;
 using BTech.DataAccess.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BTech.Web.Controllers
 {
     [Produces("application/json")]
     [Route("api/Ficha")]
-    public class FichaController : Controller
+	[Authorize("Bearer")]
+	public class FichaController : Controller
     {
         private readonly BTContext _context;
 
@@ -21,8 +23,8 @@ namespace BTech.Web.Controllers
             _context = context;
         }
 
-        // GET: api/Ficha
-        [HttpGet]
+		// GET: api/Ficha
+		[HttpGet]
         public IEnumerable<Ficha> GetFichas()
         {
 			return _context.Fichas

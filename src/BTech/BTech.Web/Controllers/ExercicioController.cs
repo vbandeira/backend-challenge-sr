@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BTech.DataAccess.Context;
 using BTech.DataAccess.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BTech.Web.Controllers
 {
     [Produces("application/json")]
     [Route("api/Exercicio")]
-    public class ExercicioController : Controller
+	[Authorize("Bearer")]
+	public class ExercicioController : Controller
     {
         private readonly BTContext _context;
 

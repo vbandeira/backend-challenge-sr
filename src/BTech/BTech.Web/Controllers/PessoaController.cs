@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BTech.DataAccess.Context;
 using BTech.DataAccess.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BTech.Web.Controllers
 {
     [Produces("application/json")]
     [Route("api/Pessoa")]
-    public class PessoaController : Controller
+	[Authorize("Bearer")]
+	public class PessoaController : Controller
     {
         private readonly BTContext _context;
 
@@ -23,6 +25,7 @@ namespace BTech.Web.Controllers
 
         // GET: api/Pessoa
         [HttpGet]
+		[AllowAnonymous]
         public IEnumerable<Pessoa> GetPessoas()
         {
             return _context.Pessoas;
