@@ -1,0 +1,12 @@
+<td>{{exercicio.ordem}}</td>
+<td>{{exercicio.nomeExercicio}}</td>
+<td>{{exercicio.repeticoes}}</td>
+<td>
+	<span *ngIf="!edit">{{exercicio.carga}}</span>
+	<input type="text" name="txtCarga" [(ngModel)]="novaCarga" *ngIf="edit" />
+</td>
+<td class="text-center">
+	<button class="btn" (click)="toggleEdit()" *ngIf="!edit"><i class="fa fa-edit"></i></button>
+	<button class="btn btn-success" (click)="saveCarga()" *ngIf="edit"><i class="fa fa-check"></i></button>
+	<button class="btn btn-danger" (click)="toggleEdit()" *ngIf="edit"><i class="fa fa-times"></i></button>
+</td>

@@ -52,4 +52,8 @@ export class BTechServices {
 	setSerieConcluida(idSerie: number) {
 		return this.http.get(this.serviceBase + 'Serie/ConcluirSerie/' + idSerie, this.getHeaders());
 	}
+
+	setAlterarCarga(idExercicio: number, valorCarga: string) {
+		return this.http.post(this.serviceBase + 'Exercicio/AlterarCarga/' + idExercicio, {'novaCarga': valorCarga}, this.getHeaders());
+	}
 }

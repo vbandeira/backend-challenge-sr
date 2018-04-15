@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BTech.DataAccess.Context;
 using BTech.DataAccess.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json.Linq;
 
 namespace BTech.Web.Controllers
 {
@@ -121,7 +122,7 @@ namespace BTech.Web.Controllers
         }
 
 		[HttpPost, Route("AlterarCarga/{id}")]
-		public async Task<IActionResult> AlterarCarga([FromRoute] int id, [FromBody] string novaCarga)
+		public async Task<IActionResult> AlterarCarga([FromRoute] int id, [FromBody] JObject input)
 		{
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
@@ -132,20 +133,22 @@ namespace BTech.Web.Controllers
 				return NotFound();
 			}
 
-			_context.Exercicios.Add(new Exercicio
+			Exercicio novoExercicio = new Exercicio
 			{
 				Ativo = true,
-				Carga = novaCarga,
+				Carga = input["novaCarga"].ToString(),
 				NomeExercicio = exercicio.NomeExercicio,
 				Ordem = exercicio.Ordem,
 				Repeticoes = exercicio.Repeticoes,
 				Serie = exercicio.Serie,
 				SerieId = exercicio.SerieId
-			});
+			};
+
+			_context.Exercicios.Add(novoExercicio);
 			exercicio.Ativo = false;
 			await _context.SaveChangesAsync();
 
-			return Ok(exercicio);
+			return Ok(novoExercicio);
 		}
 
 		private bool ExercicioExists(int id)

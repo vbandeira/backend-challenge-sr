@@ -20,7 +20,6 @@ export class AppService {
 	constructor(private router: Router, private http: Http) { }
 
 	Login(inPessoa: Pessoa) {
-		//TODO: Solicitar JWT
 		this.usuario.next(inPessoa);
 		this.http.post(this.serviceBase + 'Login', inPessoa).subscribe(data => {
 			this.jwt = data.json().accessToken;
