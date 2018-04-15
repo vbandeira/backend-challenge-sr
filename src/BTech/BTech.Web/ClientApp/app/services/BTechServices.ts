@@ -27,7 +27,19 @@ export class BTechServices {
 		return this.http.get(this.serviceBase + 'Ficha/' + idFicha);
 	}
 
+	getFichaCliente(idCliente: number) {
+		return this.http.get(this.serviceBase + 'Ficha/GetFichaCliente/' + idCliente);
+	}
+
+	getFichasProfessor(idProfessor: number) {
+		return this.http.get(this.serviceBase + 'Ficha/GetFichasProfessor/' + idProfessor);
+	}
+
 	getSerie(idSerie: number) {
 		return this.http.get(this.serviceBase + 'Serie/' + idSerie);
+	}
+
+	setSerieConcluida(idSerie: number) {
+		return this.http.get(this.serviceBase + 'Serie/ConcluirSerie/' + idSerie);
 	}
 }

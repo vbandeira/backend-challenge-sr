@@ -40,18 +40,77 @@ namespace BTech.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ficha = await _context.Fichas.Include(f => f.Professor).Include(f => f.Cliente).Include(f => f.Series).SingleOrDefaultAsync(m => m.Id == id);
+            var ficha = await _context.Fichas
+				.Include(f => f.Professor)
+				.Include(f => f.Cliente)
+				.Include(f => f.Series)
+				.SingleOrDefaultAsync(m => m.Id == id);
 
             if (ficha == null)
             {
                 return NotFound();
             }
 
-            return Ok(ficha);
+			ficha.Series = ficha.Series.OrderBy(s => s.TipoSerie).ToList();
+
+			return Ok(ficha);
         }
 
-        // PUT: api/Ficha/5
-        [HttpPut("{id}")]
+		// GET: api/FichaCliente/5
+		[HttpGet(), Route("GetFichaCliente/{id}")]
+		public async Task<IActionResult> GetFichaCliente([FromRoute] int id)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			var ficha = await _context.Fichas
+				.Include(f => f.Professor)
+				.Include(f => f.Cliente)
+				.Include(f => f.Series)
+				.SingleOrDefaultAsync(m => m.Cliente.Id == id);
+
+			if (ficha == null)
+			{
+				return NotFound();
+			}
+
+			ficha.Series = ficha.Series.OrderBy(s => s.TipoSerie).ToList();
+			
+			return Ok(ficha);
+		}
+
+		// GET: api/FichaCliente/5
+		[HttpGet(), Route("GetFichasProfessor/{id}")]
+		public async Task<IActionResult> GetFichasProfessor([FromRoute] int id)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			var ficha = _context.Fichas
+				.Include(f => f.Professor)
+				.Include(f => f.Cliente)
+				.Include(f => f.Series)
+				.Where(m => m.Professor.Id == id);
+
+			if (ficha == null)
+			{
+				return NotFound();
+			}
+
+			foreach(Ficha f in ficha)
+			{
+				f.Series = f.Series.OrderBy(s => s.TipoSerie).ToList();
+			}
+
+			return Ok(ficha);
+		}
+
+		// PUT: api/Ficha/5
+		[HttpPut("{id}")]
         public async Task<IActionResult> PutFicha([FromRoute] int id, [FromBody] Ficha ficha)
         {
             if (!ModelState.IsValid)
@@ -93,6 +152,16 @@ namespace BTech.Web.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+			if (ficha.Cliente.ContratoAtivo.HasValue && !ficha.Cliente.ContratoAtivo.Value)
+			{
+				return BadRequest(new Exception("Contrato do cliente encontra-se inativo"));
+			}
+
+			if (ficha.Series.Count == 0)
+			{
+				return BadRequest(new Exception("Ficha deve conter pelo menos uma série"));
+			}
 
             _context.Fichas.Add(ficha);
             await _context.SaveChangesAsync();

@@ -11,5 +11,10 @@ namespace BTech.DataAccess.Entities
 		public string Repeticoes { get; set; }
 		public string Carga { get;  set; }
 		public int Ordem { get; set; }
+		public bool Ativo { get; set; }
+		public int? SerieId { get; set; }
+		public DateTime DataCadastro { get; set; } = DateTime.Now;
+
+		public virtual Serie Serie { get; set; }
     }
 }

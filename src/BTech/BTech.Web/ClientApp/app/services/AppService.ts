@@ -10,11 +10,13 @@ import { Pessoa } from '../models/Pessoa';
 @Injectable()
 export class AppService {
 	
-	usuario = new BehaviorSubject<Pessoa>(new Pessoa());
+	usuario: BehaviorSubject<Pessoa> = new BehaviorSubject<Pessoa>(new Pessoa());
+	jwt: string;
 
 	constructor(private router: Router) { }
 
 	Login(inPessoa: Pessoa) {
+		//TODO: Solicitar JWT
 		this.usuario.next(inPessoa);
 	}
 

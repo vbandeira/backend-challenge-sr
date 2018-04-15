@@ -118,7 +118,35 @@ namespace BTech.Web.Controllers
             return Ok(exercicio);
         }
 
-        private bool ExercicioExists(int id)
+		[HttpPost, Route("AlterarCarga/{id}")]
+		public async Task<IActionResult> AlterarCarga([FromRoute] int id, [FromBody] string novaCarga)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+
+			Exercicio exercicio = await _context.Exercicios.SingleOrDefaultAsync(s => s.Id == id);
+			if (exercicio == null)
+			{
+				return NotFound();
+			}
+
+			_context.Exercicios.Add(new Exercicio
+			{
+				Ativo = true,
+				Carga = novaCarga,
+				NomeExercicio = exercicio.NomeExercicio,
+				Ordem = exercicio.Ordem,
+				Repeticoes = exercicio.Repeticoes,
+				Serie = exercicio.Serie,
+				SerieId = exercicio.SerieId
+			});
+			exercicio.Ativo = false;
+			await _context.SaveChangesAsync();
+
+			return Ok(exercicio);
+		}
+
+		private bool ExercicioExists(int id)
         {
             return _context.Exercicios.Any(e => e.Id == id);
         }

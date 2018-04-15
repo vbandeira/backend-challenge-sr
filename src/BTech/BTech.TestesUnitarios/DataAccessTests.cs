@@ -6,24 +6,18 @@ using Xunit;
 
 namespace BTech.TestesUnitarios
 {
-    public class DataAccessTests
+    public class DataAccessTests: BaseTests
     {
-		BTContext db;
-
-		public DataAccessTests()
-		{
-			db = new BTContext();
-			MockData.AddMockData(db);
-		}
-
-        [Fact]
-        public void ShouldContainMockData()
+		[Fact]
+		[Trait("Acesso a Dados", nameof(DeveCarregarDadosMock))]
+		public void DeveCarregarDadosMock()
         {
-			Assert.Equal(3, db.Pessoas.Count());
+			Assert.NotEqual(0, db.Pessoas.Count());
         }
 
 		[Fact]
-		public void ShouldCreateCliente()
+		[Trait("Acesso a Dados", nameof(DeveCriarUsuario))]
+		public void DeveCriarUsuario()
 		{
 			PessoaController pessoaController = new PessoaController(db);
 			int pessoasCount = pessoaController.GetPessoas().Count();

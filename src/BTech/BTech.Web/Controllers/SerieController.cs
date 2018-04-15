@@ -37,8 +37,10 @@ namespace BTech.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            var serie = await _context.Series.Include(s => s.Conclusoes).Include(s => s.Exercicios).SingleOrDefaultAsync(m => m.Id == id);
+            var serie = await _context.Series.Include(s => s.Conclusoes).SingleOrDefaultAsync(m => m.Id == id);
 
+			serie.Exercicios = _context.Exercicios.Where(e => e.SerieId == serie.Id && e.Ativo).OrderBy(e => e.Ordem).ToList();
+			
             if (serie == null)
             {
                 return NotFound();
@@ -47,8 +49,50 @@ namespace BTech.Web.Controllers
             return Ok(serie);
         }
 
-        // PUT: api/Serie/5
-        [HttpPut("{id}")]
+		[HttpPost, Route("InserirExercicio/{id}")]
+		public async Task<IActionResult> InserirExercicio([FromRoute] int id, [FromBody] Exercicio novoExercicio)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			var serie = await _context.Series.Include(s => s.Conclusoes).Include(s => s.Exercicios).SingleOrDefaultAsync(m => m.Id == id);
+
+			serie.Exercicios.Add(novoExercicio);
+			await _context.SaveChangesAsync();
+
+			if (serie == null)
+			{
+				return NotFound();
+			}
+
+			return Ok(serie);
+		}
+
+		[HttpDelete, Route("ExcluirExercicio/{idSerie}")]
+		public async Task<IActionResult> ExcluirExercicio([FromRoute]int idSerie, [FromBody] int idExercicio)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			var serie = await _context.Series.Include(s => s.Conclusoes).Include(s => s.Exercicios).SingleOrDefaultAsync(m => m.Id == idSerie);
+
+			serie.Exercicios.Remove(serie.Exercicios.First(e => e.Id == idExercicio));
+			await _context.SaveChangesAsync();
+
+			if (serie == null)
+			{
+				return NotFound();
+			}
+
+			return Ok(serie);
+		}
+
+		// PUT: api/Serie/5
+		[HttpPut("{id}")]
         public async Task<IActionResult> PutSerie([FromRoute] int id, [FromBody] Serie serie)
         {
             if (!ModelState.IsValid)
@@ -117,6 +161,28 @@ namespace BTech.Web.Controllers
 
             return Ok(serie);
         }
+
+		[HttpGet, Route("ConcluirSerie/{id}")]
+		public async Task<IActionResult> ConcluirSerie([FromRoute] int id)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+
+			Serie serie = await _context.Series.Include(s => s.Conclusoes).SingleOrDefaultAsync(s => s.Id == id);
+			if (serie == null)
+			{
+				return NotFound();
+			}
+
+			serie.Conclusoes.Add(new Conclusao
+			{
+				Serie = serie,
+				DataHoraConclusao = DateTime.Now
+			});
+			await _context.SaveChangesAsync();
+
+			return Ok(serie);
+		}
 
         private bool SerieExists(int id)
         {
