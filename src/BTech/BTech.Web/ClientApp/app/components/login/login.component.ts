@@ -17,7 +17,7 @@ export class LoginComponent {
 	}
 
 	LoginUser(inUser: Pessoa) {
-		this.appService.setUserLogged(inUser);
+		this.appService.Login(inUser);
 		this.router.navigate(['/home'])
 	}
 }

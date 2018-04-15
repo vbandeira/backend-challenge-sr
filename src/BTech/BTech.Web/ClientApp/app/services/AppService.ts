@@ -1,21 +1,25 @@
 ﻿import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
+
 import { Pessoa } from '../models/Pessoa';
-
-
 
 @Injectable()
 export class AppService {
-	private pessoa = new BehaviorSubject<Pessoa>(new Pessoa());
+	
+	usuario = new BehaviorSubject<Pessoa>(new Pessoa());
 
-	getUserLogged(): Observable<Pessoa> {
-		return this.pessoa.asObservable();
+	constructor(private router: Router) { }
+
+	Login(inPessoa: Pessoa) {
+		this.usuario.next(inPessoa);
 	}
 
-	setUserLogged(inPessoa: Pessoa) {
-		this.pessoa.next(inPessoa);
-		sessionStorage.setItem('usuarioLogado.login', inPessoa.login);
+	Logout() {
+		this.usuario.next(new Pessoa());
+		this.router.navigate(['/'])
 	}
 }

@@ -1,4 +1,4 @@
-<div class='main-nav'>
+<div class='main-nav' *ngIf="appService.usuario.value.login != undefined">
     <div class='navbar navbar-inverse'>
         <div class='navbar-header'>
             <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
@@ -10,8 +10,12 @@
             <a class='navbar-brand' [routerLink]="['/home']">Desafio BodyTech</a>
         </div>
         <div class='clearfix'></div>
-        <div class='navbar-collapse collapse'>
-			<span class="navbar-text" style="font-size: smaller">Usuario: {{usuario.nome}}</span>
+		<div class='navbar-collapse collapse'>
+			<div>
+				<a class="navbar-text text-center" style="font-size: smaller" [routerLink]="['/']" (click)="appService.Logout()">Sair</a>
+				<span class="navbar-text" style="font-size: smaller">Usuario: {{appService?.usuario?.value.nome}}</span>
+				<br />
+			</div>
 			<ul class='nav navbar-nav'>
 				<li [routerLinkActive]="['link-active']">
 					<a [routerLink]="['/home']">
@@ -23,12 +27,12 @@
 						<i class="fa fa-clipboard-list"></i>&nbsp; Ficha
 					</a>
 				</li>
-				<li [routerLinkActive]="['link-active']">
+				<li [routerLinkActive]="['link-active']" *ngIf="appService?.usuario?.value.tipoPessoa == 'Professor'">
 					<a [routerLink]="['/pessoas']">
-						<i class="fa fa-users"></i>&nbsp; Pessoas
+						<i class="fa fa-users"></i>&nbsp; Alunos
 					</a>
 				</li>
 			</ul>
-        </div>
+		</div>
     </div>
 </div>

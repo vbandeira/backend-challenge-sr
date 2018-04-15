@@ -23,7 +23,8 @@ namespace BTech.DataAccess.Context
 				Login = "cliente1",
 				Nome = "Cliente 1",
 				ContratoAtivo = true,
-				Ficha = ficha
+				Ficha = ficha,
+				TipoPessoa = TipoPessoa.Cliente
 			});
 
 			context.SaveChanges();
@@ -35,6 +36,7 @@ namespace BTech.DataAccess.Context
 			{
 				Login = "professor1",
 				Nome = "Professor 1",
+				TipoPessoa = TipoPessoa.Professor
 			};
 
 			context.Pessoas.Add(professor);

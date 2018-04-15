@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Pessoa } from '../../models/Pessoa';
-import { AppService } from '../../services/AppService';
-import { Observable } from 'rxjs/Observable';
+
 
 @Component({
     selector: 'app',
@@ -10,9 +9,5 @@ import { Observable } from 'rxjs/Observable';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	usuarioLogado: Observable<Pessoa>;
-
-	constructor(private appService: AppService) {
-		this.usuarioLogado = appService.getUserLogged();
-	}
+	constructor() {	}
 }
