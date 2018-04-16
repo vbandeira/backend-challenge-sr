@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Pessoa } from '../models/Pessoa';
 import { AppService } from './AppService';
+import { Exercicio } from '../models/Exercicio';
 
 
 @Injectable()
@@ -27,6 +28,10 @@ export class BTechServices {
 
 	getPessoa(idPessoa: number) {
 		return this.http.get(this.serviceBase + 'Pessoa/' + idPessoa, this.getHeaders());
+	}
+
+	getClientes() {
+		return this.http.get(this.serviceBase + 'Cliente/', this.getHeaders());
 	}
 
 	getFichas() {
@@ -55,5 +60,13 @@ export class BTechServices {
 
 	setAlterarCarga(idExercicio: number, valorCarga: string) {
 		return this.http.post(this.serviceBase + 'Exercicio/AlterarCarga/' + idExercicio, {'novaCarga': valorCarga}, this.getHeaders());
+	}
+
+	deleteExercicio(idExercicio: number) {
+		return this.http.delete(this.serviceBase + 'Exercicio/' + idExercicio, this.getHeaders());
+	}
+
+	inserirExercicio(idSerie: number, novoExercicio: Exercicio) {
+		return this.http.post(this.serviceBase + 'Serie/InserirExercicio/' + idSerie, novoExercicio, this.getHeaders());
 	}
 }

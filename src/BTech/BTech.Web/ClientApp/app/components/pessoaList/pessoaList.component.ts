@@ -13,6 +13,6 @@ export class PessoaListComponent implements OnInit {
 	constructor(private btService: BTechServices) { }
 
 	ngOnInit(): void {
-		this.btService.getPessoas().subscribe(data => this.pessoas = data.json());
+		this.btService.getClientes().subscribe(data => this.pessoas = data.json());
 	}
 }

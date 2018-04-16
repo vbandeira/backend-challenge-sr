@@ -2,7 +2,8 @@
 
 <h2>Selecione um usuário para prosseguir:</h2>
 <div id="divUsuarios">
-	<div *ngFor="let p of pessoas">
-		<a [routerLink]="" (click)="LoginUser(p)"> {{p.nome}} </a>
+	<div *ngFor="let p of pessoas" style="margin-top:25px;margin-bottom:25px">
+		<i class="fa fa-user fa-2x"></i>
+		<a style="font-size:large;" [routerLink]="" (click)="LoginUser(p)"> {{p.nome}} </a>
 	</div>
 </div>

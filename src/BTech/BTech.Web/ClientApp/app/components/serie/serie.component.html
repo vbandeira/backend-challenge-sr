@@ -1,9 +1,12 @@
-<div style="border: 1px solid lightgray">
+<div style="border: 1px solid lightgray; padding-bottom:10px">
 	<div class="col-lg-8">
 		<h3>S&eacute;rie: {{serie?.tipoSerie}}</h3>
 	</div>
-	<div class="col-lg-4 text-center">
+	<div class="col-lg-4 text-center" *ngIf="!professor">
 		<button class="btn btn-success" (click)="setConclusao()" [disabled]="getConcluido()"><i class="fa fa-check"></i> Concluir</button>
+	</div>
+	<div *ngIf="professor">
+		<button class="btn btn-danger"><i class="fa fa-trash"></i>&nbsp;Excluir s&eacute;rie</button>
 	</div>
 	<table class="table table-hover">
 		<thead>
@@ -13,25 +16,14 @@
 				<td>Repeti&ccedil;&otilde;es</td>
 				<td>Carga</td>
 				<td>Alterar Carga</td>
+				<td *ngIf="professor"></td>
 			</tr>
 		</thead>
 		<tbody>
-			<tr exercicio *ngFor="let e of serie?.exercicios" [exercicio]="e">
-				
-			</tr>
-				<!--
-
-			<td>{{e.ordem}}</td>
-			<td>{{e.nomeExercicio}}</td>
-			<td>{{e.repeticoes}}</td>
-			<td>{{e.carga}}</td>
-			<td>
-				<button class="btn"><i class="fa fa-edit"></i></button>
-				<button class="btn btn-success" *ngIf="false"><i class="fa fa-check"></i></button>
-				<button class="btn btn-danger" *ngIf="false"><i class="fa fa-times"></i></button>
-			</td>
-		</tr>
-			-->
+			<tr exercicio *ngFor="let e of serie?.exercicios" [exercicio]="e" [professor]="professor" [idSerie]="serie?.id" (refresh)="loadData()" (remove)="removeNovo()"></tr>
 		</tbody>
 	</table>
+	<div class="text-center">
+		<button class="btn btn-success" title="Adicionar exerc&iacute;cio" (click)="addExercicio()"><i class="fa fa-plus"></i> Adicionar Exerc&iacute;cio &agrave; s&eacute;rie</button>
+	</div>
 </div>

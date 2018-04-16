@@ -61,6 +61,12 @@ namespace BTech.Web.Controllers
 
 			var serie = await _context.Series.Include(s => s.Conclusoes).Include(s => s.Exercicios).SingleOrDefaultAsync(m => m.Id == id);
 
+			if (serie.Exercicios.Any(e => e.Ordem == novoExercicio.Ordem && e.Ativo))
+			{
+				//Reordenar
+				serie.Exercicios.Where(e => e.Ordem >= novoExercicio.Ordem && e.Ativo).ToList().ForEach(e => e.Ordem += 1);
+			}
+
 			serie.Exercicios.Add(novoExercicio);
 			await _context.SaveChangesAsync();
 

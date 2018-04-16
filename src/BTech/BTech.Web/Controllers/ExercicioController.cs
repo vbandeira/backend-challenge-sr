@@ -115,7 +115,10 @@ namespace BTech.Web.Controllers
                 return NotFound();
             }
 
-            _context.Exercicios.Remove(exercicio);
+			exercicio.Ativo = false;
+
+			_context.Exercicios.Where(e => e.SerieId == exercicio.SerieId && e.Ativo && e.Ordem > exercicio.Ordem).ForEachAsync(e => e.Ordem -= 1).Wait();
+
             await _context.SaveChangesAsync();
 
             return Ok(exercicio);

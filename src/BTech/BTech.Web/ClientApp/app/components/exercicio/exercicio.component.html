@@ -1,12 +1,25 @@
-<td>{{exercicio.ordem}}</td>
-<td>{{exercicio.nomeExercicio}}</td>
-<td>{{exercicio.repeticoes}}</td>
+<td>
+	<span *ngIf="!novo">{{exercicio.ordem}}</span>
+	<input class="col-lg-5" type="text" name="txtCarga" [(ngModel)]="exercicio.ordem" *ngIf="novo" />
+</td>
+<td>
+	<span *ngIf="!novo">{{exercicio.nomeExercicio}}</span>
+	<input type="text" name="txtCarga" [(ngModel)]="exercicio.nomeExercicio" *ngIf="novo" />
+</td>
+<td>
+	<span *ngIf="!novo">{{exercicio.repeticoes}}</span>
+	<input type="text" name="txtCarga" [(ngModel)]="exercicio.repeticoes" *ngIf="novo" />
+</td>
 <td>
 	<span *ngIf="!edit">{{exercicio.carga}}</span>
-	<input type="text" name="txtCarga" [(ngModel)]="novaCarga" *ngIf="edit" />
+	<input type="text" name="txtCarga" [(ngModel)]="novaCarga" *ngIf="edit || novo" />
 </td>
-<td class="text-center">
-	<button class="btn" (click)="toggleEdit()" *ngIf="!edit"><i class="fa fa-edit"></i></button>
+<td class="text-center col-lg-2">
+	<button class="btn" (click)="toggleEdit()" *ngIf="!edit && !novo"><i class="fa fa-edit"></i></button>
 	<button class="btn btn-success" (click)="saveCarga()" *ngIf="edit"><i class="fa fa-check"></i></button>
 	<button class="btn btn-danger" (click)="toggleEdit()" *ngIf="edit"><i class="fa fa-times"></i></button>
+</td>
+<td *ngIf="professor" class="text-center col-lg-2">
+	<button class="btn btn-success" title="Salvar exerc&iacute;cio" (click)="saveExercicio()" *ngIf="novo"><i class="fa fa-check"></i></button>
+	<button class="btn btn-danger" title="Remover exerc&iacute;cio" (click)="removeExercicio()"><i class="fa fa-trash"></i></button>
 </td>

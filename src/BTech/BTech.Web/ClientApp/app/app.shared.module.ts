@@ -39,7 +39,8 @@ import { AppService } from './services/AppService';
 			{ path: '', redirectTo: 'login', pathMatch: 'full' },
 			{ path: 'login', component: LoginComponent },
             { path: 'home', component: HomeComponent },
-            { path: 'ficha', component: FichaListaComponent },
+			{ path: 'ficha', component: FichaListaComponent },
+			{ path: 'ficha/:id', component: FichaListaComponent },
             { path: 'pessoas', component: PessoaListComponent },
             { path: '**', redirectTo: 'home' }
         ])

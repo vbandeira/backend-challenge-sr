@@ -4,6 +4,7 @@ import { Serie } from '../../models/Serie';
 
 import { BTechServices } from '../../services/BTechServices';
 import { Conclusao } from '../../models/Conclusao';
+import { Exercicio } from '../../models/Exercicio';
 
 @Component({
     selector: 'serie',
@@ -12,27 +13,40 @@ import { Conclusao } from '../../models/Conclusao';
 })
 export class SerieComponent implements OnInit {
 	@Input() idSerie: number;
+	@Input() professor: boolean;
 
 	serie: Serie;
 	conclusoes: Conclusao[];
-	concluido: boolean = this.serie != undefined && this.serie.Conclusoes != undefined ? this.serie.Conclusoes.find(c => new Date(c.DataHoraConclusao).toLocaleDateString() == new Date().toLocaleDateString()) != null : false;
+	concluido: boolean = this.serie != undefined && this.serie.conclusoes != undefined ? this.serie.conclusoes.find(c => new Date(c.DataHoraConclusao).toLocaleDateString() == new Date().toLocaleDateString()) != null : false;
 
 	constructor(private btService: BTechServices) {
 	}
 
 	ngOnInit(): void {
 		console.log('Serie: ' + this.idSerie);
+		this.loadData();
+	}
+
+	setConclusao() {
+		this.btService.setSerieConcluida(this.serie.id);
+		this.concluido = true;
+	}
+
+	getConcluido(): boolean {
+		return this.serie != undefined && this.serie.conclusoes != undefined ? this.serie.conclusoes.find(c => new Date(c.DataHoraConclusao).toLocaleDateString() == new Date().toLocaleDateString()) != null : false;
+	}
+
+	loadData() {
 		this.btService.getSerie(this.idSerie).subscribe(data => {
 			this.serie = data.json();
 		});
 	}
 
-	setConclusao() {
-		this.btService.setSerieConcluida(this.serie.Id);
-		this.concluido = true;
+	addExercicio() {
+		this.serie.exercicios.push(new Exercicio());
 	}
 
-	getConcluido(): boolean {
-		return this.serie != undefined && this.serie.Conclusoes != undefined ? this.serie.Conclusoes.find(c => new Date(c.DataHoraConclusao).toLocaleDateString() == new Date().toLocaleDateString()) != null : false;
+	removeNovo() {
+		this.serie.exercicios.pop();
 	}
 }

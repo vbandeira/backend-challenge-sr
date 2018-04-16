@@ -2,9 +2,9 @@
 import { Conclusao } from './Conclusao';
 
 export class Serie {
-	public Id: number;
-	public TipoSerie: string;
-	public Exercicios: Exercicio[];
-	public Conclusoes: Conclusao[];
-	public Ativa: boolean;
+	public id: number;
+	public tipoSerie: string;
+	public exercicios: Exercicio[];
+	public conclusoes: Conclusao[];
+	public ativa: boolean;
 }

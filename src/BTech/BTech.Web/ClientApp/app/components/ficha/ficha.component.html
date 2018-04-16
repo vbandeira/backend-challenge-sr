@@ -1,4 +1,10 @@
-﻿<h3>Ficha: {{ficha?.id}}</h3>
-<h4>Cliente: {{ficha?.cliente.nome}}</h4>
-<h4>Professor: {{ficha?.professor.nome}}</h4>
-<serie *ngFor="let s of ficha?.series" [idSerie]="s.id"></serie>
+﻿<div style="border: 1px solid darkgray; margin-bottom: 10px; padding-bottom:10px">
+	<h3>Ficha: {{ficha?.id}}</h3>
+	<h4>Cliente: {{ficha?.cliente.nome}}</h4>
+	<h4>Professor: {{ficha?.professor.nome}}</h4>
+	<serie *ngFor="let s of ficha?.series" [idSerie]="s.id" [professor]="professor"></serie>
+
+	<div *ngIf="professor && ficha?.series.length < 3" class="text-center">
+		<button class="btn btn-success"><i class="fa fa-plus"></i> Inserir série</button>
+	</div>
+</div>

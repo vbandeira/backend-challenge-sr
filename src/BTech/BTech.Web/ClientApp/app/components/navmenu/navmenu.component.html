@@ -22,8 +22,8 @@
 						<i class="fa fa-home"></i>&nbsp; Home
 					</a>
 				</li>
-				<li [routerLinkActive]="['link-active']">
-					<a [routerLink]="['/ficha']">
+				<li [routerLinkActive]="['link-active']" *ngIf="appService?.usuario?.value.tipoPessoa != 'Professor'">
+					<a [routerLink]="['/ficha', appService?.usuario?.value.id]">
 						<i class="fa fa-clipboard-list"></i>&nbsp; Ficha
 					</a>
 				</li>

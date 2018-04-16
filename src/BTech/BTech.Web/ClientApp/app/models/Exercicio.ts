@@ -4,4 +4,5 @@
 	public Repeticoes: string;
 	public carga: string;
 	public Ordem: number;
+	public Ativo: boolean;
 }
