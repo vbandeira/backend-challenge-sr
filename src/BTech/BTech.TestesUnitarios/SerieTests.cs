@@ -62,5 +62,19 @@ namespace BTech.TestesUnitarios
 			Assert.Equal(0, serie.Exercicios.Count(e => e.Id == exercicio.Id));
 
 		}
-    }
+
+		[Fact]
+		[Trait("Serie", nameof(DeveInserirSerie))]
+		public void DeveInserirSerie()
+		{
+			Assert.True(false, "Não implementado");
+		}
+
+		[Fact]
+		[Trait("Serie", nameof(DeveExcluirSerie))]
+		public void DeveExcluirSerie()
+		{
+			Assert.True(false, "Não implementado");
+		}
+	}
 }

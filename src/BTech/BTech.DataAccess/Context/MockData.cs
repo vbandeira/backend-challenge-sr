@@ -25,7 +25,8 @@ namespace BTech.DataAccess.Context
 				Nome = "Cliente 1",
 				ContratoAtivo = true,
 				Ficha = ficha1,
-				TipoPessoa = TipoPessoa.Cliente
+				TipoPessoa = TipoPessoa.Cliente,
+				Matricula = "00001"
 			});
 
 			context.Clientes.Add(new Entities.Cliente
@@ -34,7 +35,8 @@ namespace BTech.DataAccess.Context
 				Nome = "Cliente 2",
 				ContratoAtivo = true,
 				Ficha = ficha2,
-				TipoPessoa = TipoPessoa.Cliente
+				TipoPessoa = TipoPessoa.Cliente,
+				Matricula = "00002"
 			});
 
 			context.Pessoas.Add(new Pessoa

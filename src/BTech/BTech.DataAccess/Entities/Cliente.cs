@@ -8,5 +8,6 @@ namespace BTech.DataAccess.Entities
     {
 		public bool? ContratoAtivo { get; set; }
 		public Ficha Ficha { get; set; }
+		public string Matricula { get; set; }
 	}
 }

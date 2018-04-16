@@ -111,5 +111,19 @@ namespace BTech.TestesUnitarios
 			Assert.DoesNotContain(ficha, db.Fichas);
 			Assert.IsType<BadRequestObjectResult>(result);
 		}
+
+		[Fact]
+		[Trait("Ficha", nameof(DeveInserirFicha))]
+		public void DeveInserirFicha()
+		{
+			Assert.True(false, "Não implementado");
+		}
+
+		[Fact]
+		[Trait("Serie", nameof(DeveExcluirFicha))]
+		public void DeveExcluirFicha()
+		{
+			Assert.True(false, "Não implementado");
+		}
 	}
 }
