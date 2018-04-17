@@ -67,14 +67,30 @@ namespace BTech.TestesUnitarios
 		[Trait("Serie", nameof(DeveInserirSerie))]
 		public void DeveInserirSerie()
 		{
-			Assert.True(false, "Não implementado");
+			Serie serie = new Serie
+			{
+				Ativa = true,
+				Conclusoes = new List<Conclusao>(),
+				Exercicios = new List<Exercicio>(),
+				TipoSerie = TipoSerie.A
+			};
+
+			SerieController serieController = new SerieController(db);
+			serieController.PostSerie(serie).Wait();
+
+			Assert.Contains(serie, db.Series);
 		}
 
 		[Fact]
 		[Trait("Serie", nameof(DeveExcluirSerie))]
 		public void DeveExcluirSerie()
 		{
-			Assert.True(false, "Não implementado");
+			Serie serie = db.Series.Last();
+
+			SerieController serieController = new SerieController(db);
+			serieController.DeleteSerie(serie.Id).Wait();
+
+			Assert.DoesNotContain(serie, db.Series);
 		}
 	}
 }

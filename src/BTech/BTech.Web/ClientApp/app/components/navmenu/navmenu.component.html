@@ -32,6 +32,16 @@
 						<i class="fa fa-users"></i>&nbsp; Alunos
 					</a>
 				</li>
+				<li [routerLinkActive]="['link-active']" *ngIf="appService?.usuario?.value.tipoPessoa == 'Professor'">
+					<a [routerLink]="['/serie']">
+						<i class="fa fa-tasks"></i>&nbsp; S&eacute;ries
+					</a>
+				</li>
+				<li [routerLinkActive]="['link-active']" *ngIf="appService?.usuario?.value.tipoPessoa == 'Professor'">
+					<a [routerLink]="['/serie']">
+						<i class="fa fa-tasks"></i>&nbsp; Exerc&iacute;cios
+					</a>
+				</li>
 			</ul>
 		</div>
     </div>

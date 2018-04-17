@@ -155,11 +155,17 @@ namespace BTech.Web.Controllers
                 return BadRequest(ModelState);
             }
 
+			if (ficha.Cliente == null)
+				return BadRequest(new Exception("Ficha sem cliente"));
+
+			if (ficha.Professor == null)
+				return BadRequest(new Exception("Ficha sem professor"));
+
 			if (ficha.Cliente.ContratoAtivo.HasValue && !ficha.Cliente.ContratoAtivo.Value)
 			{
 				return BadRequest(new Exception("Contrato do cliente encontra-se inativo"));
 			}
-
+			
 			if (ficha.Series.Count == 0)
 			{
 				return BadRequest(new Exception("Ficha deve conter pelo menos uma série"));

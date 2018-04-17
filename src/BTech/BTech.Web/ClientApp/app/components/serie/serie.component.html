@@ -14,7 +14,7 @@
 				<td>Ordem</td>
 				<td>Nome do Exerc&iacute;cio</td>
 				<td>Repeti&ccedil;&otilde;es</td>
-				<td>Carga</td>
+				<td>Carga (Kg)</td>
 				<td>Alterar Carga</td>
 				<td *ngIf="professor"></td>
 			</tr>
@@ -24,6 +24,6 @@
 		</tbody>
 	</table>
 	<div class="text-center">
-		<button class="btn btn-success" title="Adicionar exerc&iacute;cio" (click)="addExercicio()"><i class="fa fa-plus"></i> Adicionar Exerc&iacute;cio &agrave; s&eacute;rie</button>
+		<button class="btn btn-success" title="Adicionar exerc&iacute;cio" (click)="addExercicio()" *ngIf="professor"><i class="fa fa-plus"></i> Adicionar Exerc&iacute;cio &agrave; s&eacute;rie</button>
 	</div>
 </div>

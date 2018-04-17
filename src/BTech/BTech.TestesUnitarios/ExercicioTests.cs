@@ -1,5 +1,6 @@
 ﻿using BTech.DataAccess.Entities;
 using BTech.Web.Controllers;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,11 @@ namespace BTech.TestesUnitarios
 		{
 			Exercicio exercicio = db.Exercicios.FirstOrDefault();
 			ExercicioController exercicioController = new ExercicioController(db);
-			exercicioController.AlterarCarga(exercicio.Id, "NovaCarga").Wait();
+
+			JObject novaCarga = new JObject();
+			novaCarga.Add("novaCarga", "NovaCarga");
+
+			exercicioController.AlterarCarga(exercicio.Id, novaCarga).Wait();
 
 			Assert.False(exercicio.Ativo);
 

@@ -84,8 +84,26 @@ namespace BTech.Web.Controllers
             return NoContent();
         }
 
-        // POST: api/Cliente
-        [HttpPost]
+		[HttpGet, Route("/BuscarCliente/{inBusca}")]
+		public async Task<IActionResult> BuscarCliente(string inBusca)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			var cliente = await _context.Clientes.SingleOrDefaultAsync(m => m.Nome == inBusca || m.Matricula == inBusca);
+
+			if (cliente == null)
+			{
+				return NotFound();
+			}
+
+			return Ok(cliente);
+		}
+
+		// POST: api/Cliente
+		[HttpPost]
         public async Task<IActionResult> PostCliente([FromBody] Cliente cliente)
         {
             if (!ModelState.IsValid)
@@ -120,7 +138,7 @@ namespace BTech.Web.Controllers
             return Ok(cliente);
         }
 
-        private bool ClienteExists(int id)
+		private bool ClienteExists(int id)
         {
             return _context.Clientes.Any(e => e.Id == id);
         }
