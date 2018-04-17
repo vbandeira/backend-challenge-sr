@@ -14,6 +14,7 @@ import { PessoaComponent } from './components/pessoas/pessoa.component';
 import { PessoaListComponent } from './components/pessoaList/pessoaList.component';
 import { ExercicioComponent } from './components/exercicio/exercicio.component';
 import { SerieComponent } from './components/serie/serie.component';
+import { NovaFichaComponent } from './components/novaFicha/novaFicha.component';
 
 import { BTechServices } from './services/BTechServices';
 import { AppService } from './services/AppService';
@@ -29,7 +30,8 @@ import { AppService } from './services/AppService';
 		PessoaListComponent,
 		FichaListaComponent,
 		ExercicioComponent,
-		SerieComponent
+		SerieComponent,
+		NovaFichaComponent
     ],
     imports: [
         CommonModule,

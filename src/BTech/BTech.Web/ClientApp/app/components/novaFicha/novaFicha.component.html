@@ -1,0 +1,23 @@
+﻿<table>
+	<tr>
+		<td>Início do Período:</td>
+		<td><input type="text" [(ngModel)]="novaFicha.inicioPeriodo"/></td>
+	</tr>
+	<tr>
+		<td>Término do Período:</td>
+		<td><input type="text" [(ngModel)]="novaFicha.terminoPeriodo" /></td>
+	</tr>
+	<tr>
+		<td>Professor:</td>
+		<td><input type="text" [(ngModel)]="novaFicha.professor" /></td>
+	</tr>
+	<tr>
+		<td>Cliente:</td>
+		<td>{{cliente?.nome}}</td>
+	</tr>
+	<tr>
+		<td colspan="2">Séries:</td>
+	</tr>
+</table>
+
+<button class="btn btn-success"><i class="fa fa-check"></i>&nbsp;Salvar Ficha</button> &nbsp;&nbsp; <button class="btn btn-danger" (click)="cancelar()"><i class="fa fa-trash"></i>&nbsp;Cancelar</button>

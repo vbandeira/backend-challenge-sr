@@ -25,6 +25,7 @@
     <None Remove="ClientApp\app\components\ficha\ficha.component.html" />
     <None Remove="ClientApp\app\components\ficha\ficha.component.ts" />
     <None Remove="ClientApp\app\components\login\login.component.ts" />
+    <None Remove="ClientApp\app\components\novaFicha\novaFicha.component.ts" />
     <None Remove="ClientApp\app\models\Cliente.ts" />
     <None Remove="ClientApp\app\models\Conclusao.ts" />
     <None Remove="ClientApp\app\models\Exercicio.ts" />
@@ -43,6 +44,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\ficha\ficha.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\ficha\ficha.component.html" />
     <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\novaFicha\novaFicha.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\Cliente.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\Conclusao.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\Exercicio.ts" />

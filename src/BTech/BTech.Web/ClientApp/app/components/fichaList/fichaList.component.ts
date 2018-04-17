@@ -16,6 +16,9 @@ export class FichaListaComponent implements OnInit {
 	fichas: Ficha[] = new Array<Ficha>();
 	private sub: any;
 	idCliente: number;
+
+	fichasVazia: boolean = false;
+	novaFicha: boolean = false;
 	
 	constructor(private btService: BTechServices, private appService: AppService, private activatedRoute: ActivatedRoute) {
 		
@@ -27,7 +30,13 @@ export class FichaListaComponent implements OnInit {
 		this.sub = this.activatedRoute.params.subscribe(params => {
 			this.idCliente = +params['id'];
 			if (this.idCliente) {
-				this.btService.getFichaCliente(this.idCliente).subscribe(data => this.fichas.push(data.json()));
+				this.btService.getFichaCliente(this.idCliente).subscribe(data => {
+					this.fichas.push(data.json())
+				},
+				error => {
+					if (error.status == 404)
+						this.fichasVazia = true;
+				});
 			}
 			else {
 				if (usuario.tipoPessoa == 'Professor') {
@@ -36,6 +45,13 @@ export class FichaListaComponent implements OnInit {
 				}
 			}
 		});
+	}
 
+	adicionarFicha() {
+		this.novaFicha = true;
+	}
+
+	hideFicha() {
+		this.novaFicha = false;
 	}
 }

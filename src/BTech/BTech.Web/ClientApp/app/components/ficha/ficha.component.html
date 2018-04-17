@@ -1,5 +1,4 @@
-﻿<div style="border: 1px solid darkgray; margin-bottom: 10px; padding-bottom:10px">
-	<!--<h3>Ficha: {{ficha?.id}}</h3>-->
+﻿<div style="border: 1px solid darkgray; margin-bottom: 10px; padding-bottom:10px" *ngIf="ficha != undefined">
 	<table class="table">
 		<tr>
 			<td><strong>Cliente:</strong> {{ficha?.cliente.nome}}</td>

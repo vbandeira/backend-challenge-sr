@@ -4,10 +4,10 @@ import { Cliente } from './Cliente';
 
 export class Ficha 
 {
-	public Id: number ;
-	public Series: Serie[]  ;
-	public InicioPeriodo: Date ;
-	public TerminoPeriodo: Date ;
-	public Professor: Pessoa ;
-	public Cliente: Cliente ; 
+	public id: number ;
+	public series: Serie[]  ;
+	public inicioPeriodo: Date ;
+	public terminoPeriodo: Date ;
+	public professor: Pessoa ;
+	public cliente: Cliente ; 
 }

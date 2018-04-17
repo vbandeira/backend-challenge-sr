@@ -1,1 +1,7 @@
 <ficha *ngFor="let f of fichas" [idFicha]="f.id"></ficha>
+
+<h1 *ngIf="fichasVazia">Nenhuma ficha encontrada</h1>
+
+<button class="btn btn-success" (click)="adicionarFicha()"><i class="fa fa-plus"></i>&nbsp;Adicionar Ficha</button>
+<br/><br/>
+<nova-ficha *ngIf="novaFicha" [idCliente]="idCliente" (hideFicha)="hideFicha()"></nova-ficha>

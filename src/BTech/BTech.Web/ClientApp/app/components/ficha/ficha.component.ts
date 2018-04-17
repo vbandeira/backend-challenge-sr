@@ -20,6 +20,12 @@ export class FichaComponent implements OnInit {
 
 	ngOnInit(): void {
 		console.log('Ficha: ' + this.idFicha);
-		this.btService.getFicha(this.idFicha).subscribe(data => this.ficha = data.json());
+		this.btService.getFicha(this.idFicha).subscribe((data) => {
+			this.ficha = data.json()
+		}, (error) => {
+			debugger;
+			///if (error.status == 404)
+
+		});
 	}
 }

@@ -1,3 +1,38 @@
 <h1>Alunos</h1>
 
-<pessoa *ngFor="let p of pessoas" [pessoa]="p" ></pessoa>
+<pessoa *ngFor="let p of pessoas" [pessoa]="p" (edit)="editPessoa($event)"></pessoa>
+
+<br /><br />
+<button class="btn btn-success" (click)="NovoCliente()" *ngIf="!novoCliente || !editCliente"><i class="fa fa-plus"></i> Adicionar Cliente</button>
+<br /><br />
+
+<div class="col-lg-12" *ngIf="novoCliente || editCliente">
+	<table>
+		<tr>
+			<td>Nome: </td>
+			<td>
+				<input type="text" [(ngModel)]="cliente.nome" />
+			</td>
+		</tr>
+		<tr>
+			<td>Login: </td>
+			<td>
+				<input type="text" [(ngModel)]="cliente.login"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Matricula: </td>
+			<td>
+				<input type="text" [(ngModel)]="cliente.matricula" />
+			</td>
+		</tr>
+		<tr>
+			<td>Contrato ativo: </td>
+			<td>
+				<input type="checkbox" [(ngModel)]="cliente.contratoAtivo" />
+			</td>
+		</tr>
+	</table>
+	<br/><br/>
+	<button class="btn btn-success" (click)="SalvarCliente()"><i class="fa fa-check"></i>&nbsp;Salvar Cliente</button> &nbsp;&nbsp; <button class="btn btn-danger" (click)="cancelar()"><i class="fa fa-trash"></i>&nbsp;Cancelar</button>
+</div>
