@@ -59,6 +59,10 @@ export class BTechServices {
 		return this.http.get(this.serviceBase + 'Serie/' + idSerie, this.getHeaders());
 	}
 
+	getSeries() {
+		return this.http.get(this.serviceBase + 'Serie', this.getHeaders());
+	}
+
 	setSerieConcluida(idSerie: number) {
 		return this.http.get(this.serviceBase + 'Serie/ConcluirSerie/' + idSerie, this.getHeaders());
 	}
@@ -81,5 +85,9 @@ export class BTechServices {
 
 	editCliente(inCliente: Cliente) {
 		return this.http.put(this.serviceBase + 'Cliente/' + inCliente.id, inCliente, this.getHeaders());
+	}
+
+	searchCliente(inTexto: string) {
+		return this.http.get(this.serviceBase + 'Cliente/BuscarCliente/' + inTexto, this.getHeaders());
 	}
 }

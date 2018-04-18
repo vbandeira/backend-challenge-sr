@@ -23,8 +23,10 @@ export class SerieComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		console.log('Serie: ' + this.idSerie);
-		this.loadData();
+		if (this.idSerie != undefined) {
+			console.log('Serie: ' + this.idSerie);
+			this.loadData();
+		}
 	}
 
 	setConclusao() {

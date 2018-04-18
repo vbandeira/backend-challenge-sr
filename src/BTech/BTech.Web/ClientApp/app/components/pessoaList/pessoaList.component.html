@@ -1,5 +1,11 @@
 <h1>Alunos</h1>
 
+<!--
+<div>
+	Pesquisar: <input type="text" [(ngModel)]="campoBusca" placeholder="Nome ou matr&iacute;cula" /> <button (click)="searchCliente()"><i class="fa fa-search"></i></button>
+</div>
+-->
+
 <pessoa *ngFor="let p of pessoas" [pessoa]="p" (edit)="editPessoa($event)"></pessoa>
 
 <br /><br />
@@ -17,7 +23,7 @@
 		<tr>
 			<td>Login: </td>
 			<td>
-				<input type="text" [(ngModel)]="cliente.login"/>
+				<input type="text" [(ngModel)]="cliente.login" />
 			</td>
 		</tr>
 		<tr>
@@ -33,6 +39,6 @@
 			</td>
 		</tr>
 	</table>
-	<br/><br/>
+	<br /><br />
 	<button class="btn btn-success" (click)="SalvarCliente()"><i class="fa fa-check"></i>&nbsp;Salvar Cliente</button> &nbsp;&nbsp; <button class="btn btn-danger" (click)="cancelar()"><i class="fa fa-trash"></i>&nbsp;Cancelar</button>
 </div>

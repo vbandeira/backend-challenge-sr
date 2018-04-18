@@ -84,15 +84,15 @@ namespace BTech.Web.Controllers
             return NoContent();
         }
 
-		[HttpGet, Route("/BuscarCliente/{inBusca}")]
-		public async Task<IActionResult> BuscarCliente(string inBusca)
+		[HttpPost, Route("/BuscarCliente")]
+		public async Task<IActionResult> BuscarCliente([FromBody] string inBusca)
 		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
+			object cliente;
 
-			var cliente = await _context.Clientes.SingleOrDefaultAsync(m => m.Nome == inBusca || m.Matricula == inBusca);
+			if (string.IsNullOrEmpty(inBusca))
+				cliente = _context.Clientes;
+			else 
+				cliente = await _context.Clientes.SingleOrDefaultAsync(m => m.Nome == inBusca || m.Matricula == inBusca);
 
 			if (cliente == null)
 			{

@@ -15,6 +15,7 @@ import { PessoaListComponent } from './components/pessoaList/pessoaList.componen
 import { ExercicioComponent } from './components/exercicio/exercicio.component';
 import { SerieComponent } from './components/serie/serie.component';
 import { NovaFichaComponent } from './components/novaFicha/novaFicha.component';
+import { SerieListComponent } from './components/serieList/serieList.component';
 
 import { BTechServices } from './services/BTechServices';
 import { AppService } from './services/AppService';
@@ -31,7 +32,8 @@ import { AppService } from './services/AppService';
 		FichaListaComponent,
 		ExercicioComponent,
 		SerieComponent,
-		NovaFichaComponent
+		NovaFichaComponent,
+		SerieListComponent,
     ],
     imports: [
         CommonModule,
@@ -43,7 +45,8 @@ import { AppService } from './services/AppService';
             { path: 'home', component: HomeComponent },
 			{ path: 'ficha', component: FichaListaComponent },
 			{ path: 'ficha/:id', component: FichaListaComponent },
-            { path: 'pessoas', component: PessoaListComponent },
+			{ path: 'pessoas', component: PessoaListComponent },
+			{ path: 'serie', component: SerieListComponent},
             { path: '**', redirectTo: 'home' }
         ])
 	],

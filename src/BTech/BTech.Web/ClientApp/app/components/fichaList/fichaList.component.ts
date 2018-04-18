@@ -40,8 +40,7 @@ export class FichaListaComponent implements OnInit {
 			}
 			else {
 				if (usuario.tipoPessoa == 'Professor') {
-					// Listar todas as fichas sob sua responsabilidade
-					this.btService.getFichasProfessor(usuario.id).subscribe(data => this.fichas = data.json());
+					this.btService.getFichas().subscribe(data => this.fichas = data.json());
 				}
 			}
 		});

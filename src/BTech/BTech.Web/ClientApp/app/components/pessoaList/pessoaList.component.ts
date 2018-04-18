@@ -16,6 +16,8 @@ export class PessoaListComponent implements OnInit {
 	novoCliente: boolean = false;
 	editCliente: boolean = false;
 
+	campoBusca: string;
+
 	constructor(private btService: BTechServices) { }
 
 	private updateClientes() {
@@ -54,5 +56,9 @@ export class PessoaListComponent implements OnInit {
 	editPessoa(pessoa: Cliente) {
 		this.editCliente = true;
 		this.cliente = { ...pessoa };
+	}
+
+	searchCliente() {
+		this.btService.searchCliente(this.campoBusca).subscribe(data => this.pessoas = data.json());
 	}
 }
